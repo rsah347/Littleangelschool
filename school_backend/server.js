@@ -1,3 +1,6 @@
+// ================= LOAD ENV =================
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -15,14 +18,31 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/admin", express.static(path.join(__dirname, "admin")));
 
 // ================= DATABASE =================
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === "production"
-    ? { rejectUnauthorized: false }
-    : false,
-});
+let pool;
 
-// ================= TEST =================
+if (process.env.DATABASE_URL) {
+  // ✅ Render / Production
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+} else {
+  // ✅ Local PostgreSQL
+  pool = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "school_db",
+    password: "rahul", // MUST be string
+    port: 5432,
+  });
+}
+
+// ================= TEST DB =================
+pool.connect()
+  .then(() => console.log("✅ PostgreSQL connected"))
+  .catch(err => console.error("❌ DB connection error:", err.message));
+
+// ================= TEST API =================
 app.get("/api/test", (req, res) => {
   res.json({ message: "Server running successfully" });
 });
@@ -32,16 +52,16 @@ app.post("/admin/login", (req, res) => {
   const { username, password } = req.body;
 
   if (username === "admin" && password === "12345") {
-    res.json({
+    return res.json({
       success: true,
       token: "admin-token-123",
     });
-  } else {
-    res.status(401).json({
-      success: false,
-      message: "Invalid credentials",
-    });
   }
+
+  res.status(401).json({
+    success: false,
+    message: "Invalid credentials",
+  });
 });
 
 // ================= ADMISSION =================
@@ -81,7 +101,7 @@ app.post("/submit-admission", async (req, res) => {
 
     res.json({ message: "Admission submitted successfully" });
   } catch (err) {
-    console.error(err);
+    console.error("Admission Error:", err.message);
     res.status(500).json({ message: "Admission error" });
   }
 });
@@ -99,7 +119,7 @@ app.post("/submit-contact", async (req, res) => {
 
     res.json({ message: "Contact submitted successfully" });
   } catch (err) {
-    console.error(err);
+    console.error("Contact Error:", err.message);
     res.status(500).json({ message: "Contact error" });
   }
 });
@@ -115,11 +135,18 @@ app.post("/activities", (req, res) => {
   if (req.headers.authorization !== "admin-token-123") {
     return res.status(403).json({ message: "Unauthorized" });
   }
+
   activities.push(req.body);
   res.json({ success: true });
 });
 
+// Fallback route for root
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+
 // ================= START SERVER =================
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });
