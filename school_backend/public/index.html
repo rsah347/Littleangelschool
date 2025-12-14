@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Little Angel English Medium School</title>
+  <link rel="icon" type="image/jpg" href="image/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Navbar Section -->
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <img src="image/logo.jpg" alt="Little Angel Logo" width="100px">
+        <p>Little Angel English Medium School</p>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="About.html">About Us</a></li>
+          <li><a href="Admission.html">Admission</a></li>
+          <li><a href="Contact.html">Contact Us</a></li>
+          <li><a href="Activities.html">Activities</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Slideshow Section -->
+  <div class="slide-nav">
+    <div class="slideshow-container">
+      <div class="mySlides fade"><img src="image/schoolphoto.jpg" alt=""></div>
+      <div class="mySlides fade"><img src="image/schoolphoto2.jpg" alt=""></div>
+      <div class="mySlides fade"><img src="image/schoolphoto3.jpg" alt=""></div>
+      <div class="mySlides fade"><img src="image/saturday1.jpg" alt=""></div>
+      <div class="mySlides fade"><img src="image/saturday3.jpg" alt=""></div>
+      <div class="mySlides fade"><img src="image/saturday5.jpg" alt=""></div>
+      <div class="mySlides fade"><img src="image/saturday7.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("mySlides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none"; 
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000); // Change image every 3 seconds
+    }
+  </script>
+
+  <!-- About Section -->
+  <div class="div">
+    <div class="about-section">
+      <div class="about-image">
+        <img src="/image/school.jpg.png" alt="School Image">
+      </div>
+      <div class="about-content">
+        <h2>ABOUT <span class="highlight">LITTLE ANGEL</span></h2>
+        <ul>
+          <li>We shall strive for constant refinement and improvement of the quality of education provided.</li>
+          <li>The only really substantial thing education can do is help us to become continuous lifelong learners.</li>
+          <li>We hope that students in the classroom of tomorrow will be encouraged to be creative, not conforming and learn to cooperate rather than compete.</li>
+          <li>Expectations are set high for our new school. We aim for all children to be inspired and motivated to achieve their full potential and for our school community to become lifelong learners.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Goals Section -->
+    <div class="goals-section">
+      <h2>ESSENTIAL GOALS OF LITTLE ANGEL  SCHOOLS</h2>
+      <div class="goals-container">
+        <div class="goal-item"><i class="fa-solid fa-lightbulb"></i><div class="goal-text">To Be Lifelong Learners</div></div>
+        <div class="goal-item"><i class="fa-regular fa-clock"></i><div class="goal-text">To Be Able To Look At Things Differently</div></div>
+        <div class="goal-item"><i class="fa-solid fa-location-pin"></i><div class="goal-text">To Persevere</div></div>
+        <div class="goal-item"><i class="fa-solid fa-graduation-cap"></i><div class="goal-text">To Be Creative</div></div>
+        <div class="goal-item"><i class="fa-solid fa-file-lines"></i><div class="goal-text">To Speak Well, Write Well, Read Well And Work Well</div></div>
+        <div class="goal-item"><i class="fa-solid fa-users"></i><div class="goal-text">To Have Integrity And Self Respect</div></div>
+      </div>
+    </div>
+
+    <!-- Previous Event Section -->
+    <div class="event-section">
+      <h2>PREVIOUS EVENT</h2>
+      <div class="event-images">
+        <img src="image/eventphoto.jpg" alt="Event Image">
+        <img src="image/eventphoto4.jpg" alt="Event Image">
+        <img src="image/eventphoto3.jpg" alt="Event Image">
+      </div>
+    </div>
+
+    <!-- Little Angel Learners Section -->
+    <div class="section">
+      <div class="left">
+        <h1>LITTLE ANGEL <span>LEARNERS</span></h1>
+        <div class="bullet"><i class="fa-solid fa-check"></i><p>Children learn best when they are happy and secure...</p></div>
+        <div class="bullet"><i class="fa-solid fa-check"></i><p>To develop the natural curiosity that children develop...</p></div>
+        <div class="bullet"><i class="fa-solid fa-check"></i><p>To develop young learners with energetic and imaginative minds...</p></div>
+        <div class="bullet"><i class="fa-solid fa-check"></i><p>To provide each student assorted education that endorses self-control...</p></div>
+        <div class="bullet"><i class="fa-solid fa-check"></i><p>To assist the students in developing skills to become independent holistic learners...</p></div>
+      </div>
+      <div class="right">
+        <img src="image/school.jpg.png" alt="Premier School Building">
+      </div>
+    </div>
+  </div>
+
+  <!-- Faculty Section -->
+  <section class="faculty-section">
+    <h2 class="title1">SCHOOL FACULTIES</h2>
+    <div class="slider" id="slider">
+      <div class="card">
+        <img src="image/eventphoto.jpg" class="teacher-img">
+        <h3>NIRAV SIR</h3>
+        <p class="exp">Maths Expert</p>
+        <p class="desc">A passionate and dedicated teacher with deep knowledge...</p>
+      </div>
+      <div class="card">
+        <img src="image/eventphoto2.jpg" class="teacher-img">
+        <h3>NEHA MADAM</h3>
+        <p class="exp">Biology Expert</p>
+        <p class="desc">She possesses strong knowledge in biology, human anatomy...</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const slider = document.getElementById("slider");
+    // leftBtn and rightBtn are optional if you don't have arrows
+    const scrollAmount = 600;
+    setInterval(() => {
+      slider.scrollLeft += scrollAmount;
+      if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+        slider.scrollLeft = 0;
+      }
+    }, 5000);
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-box">
+        <h3>CONTACT US</h3>
+        <p><i class="fa-solid fa-location-dot"></i> Sardhar, Bhavnagar Highway, Rajkot</p>
+        <p><i class="fa-solid fa-phone"></i> +91 9898551808</p>
+        <p><i class="fa-solid fa-envelope"></i> <a href="mailto:sahrahul2131@gmail.com">sahrahul2131@gmail.com</a></p>
+        <p><i class="fa-solid fa-clock"></i> 09:00 am – 05:00 pm</p>
+      </div>
+      <div class="footer-box">
+        <h3>USEFUL LINKS</h3>
+        <a href="Home.html">Home</a>
+        <a href="admission.html">Admission</a>
+        <a href="about.html">About Us</a>
+        <a href="#">Previous Results</a>
+      </div>
+      <div class="footer-box">
+        <h3>USEFUL LINKS</h3>
+        <a href="Home.html">Events</a>
+        <a href="#">Achievement</a>
+        <a href="#">Alumni</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-box">
+        <h3>ABOUT LITTLE ANGEL  SCHOOLS</h3>
+        <p>"To enlighten the flame of knowledge and remove the darkness of ignorance, and to create responsible citizens towards a developed India."</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <span>LITTLE ANGEL SCHOOLS</span> All Rights Reserved. Developed by <span>Royal Techno Giants</span></p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/pateljalpesh99"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/liittle_angel_school"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
