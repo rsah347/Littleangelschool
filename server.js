@@ -61,7 +61,7 @@ app.post("/admin/login", (req, res) => {
 });
 
 // ================= ADMISSION FORM =================
-app.post("/submit-admission", async (req, res) => {
+app.post("/admission", async (req, res) => {
   try {
     const {
       student_name,
@@ -103,7 +103,7 @@ app.post("/submit-admission", async (req, res) => {
 });
 
 // ================= CONTACT FORM =================
-app.post("/submit-contact", async (req, res) => {
+app.post("/contact", async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
 

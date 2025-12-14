@@ -186,7 +186,7 @@
         message: document.getElementById("conMessage").value,
       };
 
-      fetch("http://localhost:5000/submit-contact", {
+      fetch("https://littleangelschool-3.onrender.com/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
