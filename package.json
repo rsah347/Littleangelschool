@@ -1,0 +1,19 @@
+{
+  "name": "school_backend",
+  "version": "1.0.0",
+  "description": "School website backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.22.1",
+    "pg": "^8.16.3"
+  },
+  "keywords": []
+}
