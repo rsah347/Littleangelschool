@@ -127,11 +127,11 @@ app.post("/submit-contact", async (req, res) => {
 // ================= ACTIVITIES =================
 let activities = [];
 
-app.get("/activities", (req, res) => {
+app.get("/api/activities", (req, res) => {
   res.json(activities);
 });
 
-app.post("/activities", (req, res) => {
+app.post("/api/activities", (req, res) => {
   if (req.headers.authorization !== "admin-token-123") {
     return res.status(403).json({ message: "Unauthorized" });
   }
@@ -141,7 +141,6 @@ app.post("/activities", (req, res) => {
 });
 
 // ================= FRONTEND PAGES =================
-// Serve all HTML pages in the public folder
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
@@ -152,6 +151,14 @@ app.get("/about", (req, res) => {
 
 app.get("/contact", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "contact.html"));
+});
+
+app.get("/admission", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admission.html"));
+});
+
+app.get("/activities", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "activities.html"));
 });
 
 // app.get("/gallery", (req, res) => {
