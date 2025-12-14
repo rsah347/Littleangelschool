@@ -13,15 +13,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// ================= SERVE FRONTEND =================
-app.use(express.static(path.join(__dirname, "public"))); // Main public folder
-app.use("/admin", express.static(path.join(__dirname, "admin"))); // Admin panel
-
 // ================= DATABASE =================
 let pool;
 
 if (process.env.DATABASE_URL) {
-  // ✅ Render / Production
+  // ✅ Production / Render
   pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
@@ -37,7 +33,7 @@ if (process.env.DATABASE_URL) {
   });
 }
 
-// ================= TEST DB =================
+// ================= TEST DB CONNECTION =================
 pool.connect()
   .then(() => console.log("✅ PostgreSQL connected"))
   .catch(err => console.error("❌ DB connection error:", err.message));
@@ -64,7 +60,7 @@ app.post("/admin/login", (req, res) => {
   });
 });
 
-// ================= ADMISSION =================
+// ================= ADMISSION FORM =================
 app.post("/submit-admission", async (req, res) => {
   try {
     const {
@@ -106,7 +102,7 @@ app.post("/submit-admission", async (req, res) => {
   }
 });
 
-// ================= CONTACT =================
+// ================= CONTACT FORM =================
 app.post("/submit-contact", async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
@@ -124,7 +120,7 @@ app.post("/submit-contact", async (req, res) => {
   }
 });
 
-// ================= ACTIVITIES =================
+// ================= ACTIVITIES API =================
 let activities = [];
 
 app.get("/api/activities", (req, res) => {
@@ -141,35 +137,22 @@ app.post("/api/activities", (req, res) => {
 });
 
 // ================= FRONTEND PAGES =================
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+// Serve HTML files explicitly
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
+app.get("/about", (req, res) => res.sendFile(path.join(__dirname, "public", "about.html")));
+app.get("/contact", (req, res) => res.sendFile(path.join(__dirname, "public", "contact.html")));
+app.get("/admission", (req, res) => res.sendFile(path.join(__dirname, "public", "admission.html")));
+app.get("/activities", (req, res) => res.sendFile(path.join(__dirname, "public", "activities.html")));
+
+// ================= STATIC FILES =================
+// Serve CSS, JS, Images
+app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/admin", express.static(path.join(__dirname, "admin")));
+
+// ================= 404 PAGE =================
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, "public", "404.html")); // optional 404 page
 });
-
-app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "about.html"));
-});
-
-app.get("/contact", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "contact.html"));
-});
-
-app.get("/admission", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "admission.html"));
-});
-
-app.get("/activities", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "activities.html"));
-});
-
-// app.get("/gallery", (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "gallery.html"));
-// });
-
-// Add more pages here as needed
-// Example:
-// app.get("/admission", (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "admission.html"));
-// });
 
 // ================= START SERVER =================
 app.listen(PORT, () => {
